@@ -1,0 +1,22 @@
+<h1>Articles</h1>
+
+<% @posts.each do |post| %>
+
+    <h2><%= post.name %></h2>
+
+    <p><%= post.content %></p>
+
+    <p>
+        <a href="<%= post_path(post.id) %>" class="btn btn-primary">Lire la suite</a>
+        <a href="<%= edit_post_path(post.id) %>" class="btn btn-primary">Editer</a>
+        <%= button_to "Supprimer", post_path(post.id), method: :delete, class: 'btn btn-danger' %>
+    </p>
+
+<% end %>
+
+
+<p>
+
+    <a href="<%= new_post_path%>" class="btn btn-success">Crée un article</a>
+
+</p>
