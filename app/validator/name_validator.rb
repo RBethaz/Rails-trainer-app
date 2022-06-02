@@ -1,12 +1,9 @@
-class NameValidator < ActiveModel::Validator
+class NameValidator < ActiveModel::EachValidator
 
-    def validate(record)
-            if record.name.nil? || record.name.length != 5
-                record.errors.add(:name , 'Le champ doit être de 5 characters' )
-            end
-            if record.content.nil? || record.content.length != 2
-                record.errors.add(:content, 'Le champ doit être de 2 characters')
-            end
-        end
+  def validate_each(record, attribute, value)
+    if value.nil? || value.length != 2
+        record.errors.add(attribute, 'doit avoir 2 caractères')
+    end
+end
 
 end
