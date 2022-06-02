@@ -7,6 +7,10 @@
     <p><%= post.content %></p>
 
     <p>
+        Categorie : <%= post.category.name %>
+    </p>
+
+    <p>
         <a href="<%= post_path(post.id) %>" class="btn btn-primary">Lire la suite</a>
         <a href="<%= edit_post_path(post.id) %>" class="btn btn-primary">Editer</a>
         <%= button_to "Supprimer", post_path(post.id), method: :delete, class: 'btn btn-danger' %>

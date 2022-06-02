@@ -4,7 +4,7 @@ class PostsController < ApplicationController
 
   def index
     cookies.delete(:username)
-    @posts = Post.all
+    @posts = Post.reorder(name: :desc).all
     respond_to do |format|
       format.html
       format.json { render json: @posts }
