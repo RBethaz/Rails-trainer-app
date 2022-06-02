@@ -23,11 +23,13 @@ class PostsController < ApplicationController
   end 
 
   def update
-    @post.update(post_params)
+    if @post.update(post_params)
     #flash[:success] = "Post modified successfully"
     #flash[:danger] = "Post was successfully updated"
     redirect_to posts_path, flash: {success: "Post modified successfully"}
-  
+    else 
+      render 'edit'
+    end
   end
 
   def new
@@ -35,8 +37,14 @@ class PostsController < ApplicationController
   end
   
   def create 
-    post = Post.create(post_params)
-    redirect_to post_path(post.id), flash: {success: "Article was successfully createdy"}
+    post = Post.new(post_params)
+    if post.valid?
+      post.save
+      redirect_to post_path(post.id), flash: {success: "Article was successfully createdy"}
+    else 
+      @post = post
+      render 'new'
+    end
   end 
 
   def destroy 
